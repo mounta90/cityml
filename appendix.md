@@ -1,5 +1,153 @@
 # Appendix
 
+
+
+## Building Envelope Composite Components
+
+This section describes the material layers and thermal properties for building envelope composites used in commercial (steel-framed) and residential (wood-framed) buildings, for the CitySim simulations.
+
+### Surface Resistance Values (ISO Standard)
+
+Based on [U-Value Calculator](https://www.changeplan.co.uk/u_value_calculator.php)
+
+| Surface Type | External (Rse) | Internal (Rsi) |
+|--------------|----------------|----------------|
+| Wall | 0.04 m²·K/W | 0.13 m²·K/W |
+| Ground Floor | 0.02 m²·K/W | 0.17 m²·K/W |
+| Roof | 0.04 m²·K/W | 0.10 m²·K/W |
+
+### Exterior Wall Composite
+
+**Applies to:** Both commercial and residential buildings
+
+#### Layer Stack (Outside → Inside)
+
+| Layer | Thickness (m) | Conductivity (W/m·K) | Specific Heat (J/kg·K) | Density (kg/m³) | R-Value (m²·K/W) |
+|-------|---------------|---------------------|------------------------|-----------------|------------------|
+| Stucco | 0.0254 | 0.7195 | 839.4584 | 1856.0042 | 0.0353 |
+| Gypsum Board | 0.0159 | 0.1599 | 1089.2972 | 800.0018 | 0.0994 |
+| Polyisocyanurate Insulation | Variable* | 0.023 | 900.0 | 32.0 | Variable* |
+| Gypsum Board | 0.0159 | 0.1599 | 1089.2972 | 800.0018 | 0.0994 |
+
+\* **Variable thickness calculation:**
+```
+Target R-value = 1 / Wall U-value (input)
+Insulation R-value = Target R-value - Stucco R - 2×Gypsum R - Rse - Rsi
+Insulation thickness = Insulation R-value × 0.023 W/m·K
+```
+
+**Material References:**
+- Polyisocyanurate: [Wikipedia](https://en.wikipedia.org/wiki/Polyisocyanurate), [IES VE Thermal Properties](https://help.iesve.com/ve2021/table_6_thermal_conductivity__specific_heat_capacity_and_density.htm)
+- Density: 2 pcf = 32 kg/m³ ([Distribution International](https://www.distributioninternational.com/insulation/polyisocyanurate/polyisocyanurate-board))
+- R-value performance: [Rmax Blog](https://www.rmax.com/blog/polyiso-r-value-over-time)
+
+---
+
+### Ground Floor Composite
+
+**Applies to:** Both commercial and residential buildings
+
+#### Layer Stack (Outside → Inside)
+
+| Layer | Thickness (m) | Conductivity (W/m·K) | Specific Heat (J/kg·K) | Density (kg/m³) | R-Value (m²·K/W) |
+|-------|---------------|---------------------|------------------------|-----------------|------------------|
+| Expanded Polystyrene (XPS) | Variable* | 0.035 | 1213.0 | 29.0 | Variable* |
+| Normal Weight Concrete (8") | 0.2032 | 2.3085 | 831.4635 | 2322.0053 | 0.0880 |
+| Cellular Rubber Underlay (Carpet Pad) | 0.02165 | 0.1 | 400.0 | 1360.0 | 0.2165 |
+
+\* **Variable thickness calculation:**
+```
+Target R-value = 1 / Floor U-value (input)
+Insulation R-value = Target R-value - Concrete R - Pad R - Rse - Rsi
+Insulation thickness = Insulation R-value × 0.035 W/m·K
+```
+
+**Material References:**
+- XPS and Cellular Rubber: [IES VE Thermal Properties](https://help.iesve.com/ve2021/table_6_thermal_conductivity__specific_heat_capacity_and_density.htm)
+
+---
+
+### Exterior Roof Composite - Commercial Building
+
+**Applies to:** Steel-framed commercial buildings
+
+#### Layer Stack (Outside → Inside)
+
+| Layer | Thickness (m) | Conductivity (W/m·K) | Specific Heat (J/kg·K) | Density (kg/m³) | R-Value (m²·K/W) |
+|-------|---------------|---------------------|------------------------|-----------------|------------------|
+| Roof Membrane | 0.0095 | 0.1599 | 1459.0586 | 1121.2926 | 0.0594 |
+| Polyisocyanurate Insulation | Variable* | 0.023 | 900.0 | 32.0 | Variable* |
+| Metal Roof Surface | 0.0008 | 45.2497 | 499.6776 | 7824.0179 | 0.0000 |
+
+\* **Variable thickness calculation:**
+```
+Target R-value = 1 / Roof U-value (input)
+Insulation R-value = Target R-value - Membrane R - Metal R - Rse - Rsi
+Insulation thickness = Insulation R-value × 0.023 W/m·K
+```
+
+**Material References:**
+- Polyisocyanurate: [Rmax Blog](https://www.rmax.com/blog/polyiso-r-value-over-time)
+
+---
+
+### Exterior Roof Composite - Residential Building
+
+**Applies to:** Wood-framed residential buildings
+
+#### Layer Stack (Outside → Inside)
+
+| Layer | Thickness (m) | Conductivity (W/m·K) | Specific Heat (J/kg·K) | Density (kg/m³) | R-Value (m²·K/W) |
+|-------|---------------|---------------------|------------------------|-----------------|------------------|
+| Plywood Deck | 0.0159 | 0.116† | 1585.0‡ | 524.0 | 0.1371 |
+| Polyisocyanurate Insulation | Variable* | 0.023 | 900.0 | 32.0 | Variable* |
+| Gypsum Board (5/8") | 0.0159 | 0.1599 | 1089.2972 | 800.0018 | 0.0994 |
+
+\* **Variable thickness calculation:**
+```
+Target R-value = 1 / Roof U-value (input)
+Insulation R-value = Target R-value - Gypsum R - Plywood R - Rse - Rsi
+Insulation thickness = Insulation R-value × 0.023 W/m·K
+```
+
+† Interpolated between values at 15°C and 45°C  
+‡ Value at 30°C
+
+**Material References:**
+- Plywood: [FSRI Material Database](https://materials.fsri.org/materialdetail/exterior-plywood)
+
+---
+
+### Interior Zone Divider Composite - Commercial Building
+
+**Applies to:** Steel-framed commercial buildings (ceiling assembly)
+
+#### Layer Stack (Outside → Inside)
+
+| Layer | Thickness (m) | Conductivity (W/m·K) | Specific Heat (J/kg·K) | Density (kg/m³) |
+|-------|---------------|---------------------|------------------------|-----------------|
+| Generic Acoustic Tile | 0.1 | 0.53 | 840.0 | 1280.0 |
+| Generic Ceiling Air Gap | 0.1 | 0.556 | 1000.0 | 1.28 |
+| Generic LW Concrete | 0.2 | 0.06 | 590.0 | 368.0 |
+
+---
+
+### Interior Zone Divider Composite - Residential Building
+
+**Applies to:** Wood-framed residential buildings (ceiling assembly)
+
+#### Layer Stack (Outside → Inside)
+
+| Layer | Thickness (m) | Conductivity (W/m·K) | Specific Heat (J/kg·K) | Density (kg/m³) |
+|-------|---------------|---------------------|------------------------|-----------------|
+| Generic Acoustic Tile | 0.02 | 0.06 | 590.0 | 368.0 |
+| Generic Ceiling Air Gap | 0.1 | 0.556 | 1000.0 | 1.28 |
+| Generic LW Concrete | 0.1 | 0.53 | 840.0 | 1280.0 |
+
+---
+
+---
+
 ## Hyperparameter Configurations
 
 ### XGBoost
