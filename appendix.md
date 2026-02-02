@@ -1,6 +1,25 @@
 # Appendix
 
+## Table: Randomized CitySim Parameters
 
+| Parameter | Range |
+|---|---|
+| Avg. Wall U-Value | [0.2, 3.0] |
+| Avg. Window U-Value | [0.2, 3.0] |
+| Avg. Window g-Value | [0.1, 0.8] |
+| Avg. Wall S.W. Reflectance | [0.0, 0.8] |
+| Roof U-Value | [0.2, 3.0] |
+| Roof S.W. Reflectance | [0.0, 0.8] |
+| Floor U-Value | [0.2, 3.0] |
+| Window-to-Wall Ratio | [0.0, 0.8] |
+| Infiltration Rate | [0.1, 1.0] |
+| COP | [3.0, 6.0] |
+| EER | [3.0, 6.0] |
+| Min. Temp. Set Point | [16, 22] |
+| Max. Temp. Set Point | [23, 29] |
+| Occupancy Type | (low, medium, high) |
+| Occupants per 100 m² | ( [5, 10], [15, 25], [40, 50] ) |
+| Occupancy Profile | Residential or Work-place |
 
 ## Building Envelope Composite Components
 
