@@ -167,6 +167,80 @@ Insulation thickness = Insulation R-value × 0.023 W/m·K
 
 ---
 
+## Feature Transformation Stage
+
+### Table: Feature Transformation Options
+
+| Feature Skew Type | Transformation Technique |
+|---|---|
+| Moderately Right | Natural Log |
+| | Square Root |
+| | Cube Root |
+| | Yeo-Johnson |
+| Highly Right | Quantile Transformation |
+| | Yeo-Johnson |
+| Moderately Left | Yeo-Johnson |
+| | Box-Cox |
+| | Squaring |
+| | Cubing |
+
+### Table: Quantile Transformation Hyper-parameters
+
+| Hyper-Parameter | Distribution | Range |
+|---|---|---|
+| Number of Quantiles | Integer | [100, 500] |
+| Max Number of Samples | Integer | [500, 1000] |
+
+---
+
+## Feature Scaling Stage
+
+### Table: Robust Scaling
+
+| Hyper-Parameter | Distribution | Range |
+|---|---|---|
+| With Centering? | Categorical | { True, False } |
+| With Scaling? | Categorical | { True, False } |
+| Unit Variance Scaling? | Categorical | { True, False } |
+| Quantile Range | Tuple | Uniform[0.0, 0.45] |
+| | | Uniform[0.55, 1.0] |
+
+### Table: Min-Max Scaling
+
+| Hyper-Parameter | Distribution | Range |
+|---|---|---|
+| Feature Range | Categorical | { (-1.0, 1.0), (0.0, 1.0) } |
+
+### Table: Sample Unit Norm Normalization
+
+| Hyper-Parameter | Distribution | Range |
+|---|---|---|
+| Norm Type | Categorical | { L1, L2, Max } |
+
+---
+
+## Classical Machine Learning Stage
+
+### Table: Classical Machine Learning Algorithm Options
+
+| Category | Algorithm |
+|---|---|
+| Tree-Based Ensembling | Random Forest |
+| | Gradient Boosting |
+| | XGBoost |
+| | LightGBM |
+| | CatBoost |
+| | HistogramGB |
+| Single Decision Trees | Decision Tree |
+| Linear Models | Linear Regression |
+| | Ridge |
+| | Lasso |
+| | Elastic Net |
+| | Linear SVM |
+| Neighbors-Based | K-Nearest Neighbors |
+
+---
+
 ## Hyperparameter Configurations
 
 ### XGBoost
